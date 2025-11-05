@@ -1,4 +1,4 @@
-package api.book_api.tests.negative;
+package api.booking.tests.negative;
 
 public class BookAPINegativeTest {
 }

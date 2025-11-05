@@ -1,4 +1,4 @@
-package api.book_api.client.models.response;
+package api.booking.models.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

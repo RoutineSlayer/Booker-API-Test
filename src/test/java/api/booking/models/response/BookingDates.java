@@ -1,4 +1,4 @@
-package api.book_api.client.models.request;
+package api.booking.models.response;
 
 public record BookingDates(
         String checkIn,

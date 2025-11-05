@@ -1,21 +1,23 @@
-package api.book_api.tests;
+package api.booking.tests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.config.LogConfig;
 import io.restassured.config.ObjectMapperConfig;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.mapper.factory.DefaultJackson2ObjectMapperFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
 
 import static io.restassured.RestAssured.*;
 
 public final class Config {
+
+    private static final Logger log = LoggerFactory.getLogger(Config.class);
 
     public static void initRestAssuredConfig() {
         baseURI = "https://restful-booker.herokuapp.com/";
@@ -27,10 +29,11 @@ public final class Config {
                         objectMapper.setPropertyNamingStrategy(PropertyNamingStrategies.LOWER_CASE);
                         return objectMapper;
                     }
-                })).logConfig(LogConfig.logConfig().enableLoggingOfRequestAndResponseIfValidationFails());
+                })).logConfig(config.getLogConfig().enableLoggingOfRequestAndResponseIfValidationFails());
 
         requestSpecification = new RequestSpecBuilder().setConfig(config).setBaseUri(baseURI)
                 .setContentType(ContentType.JSON).addFilter(new AllureRestAssured()).build();
-        responseSpecification = new ResponseSpecBuilder().log(LogDetail.ALL).build();
+
+        responseSpecification = new ResponseSpecBuilder().build();
     }
 }

@@ -1,6 +1,6 @@
-package api.book_api.client.models.request;
+package api.booking.models.response;
 
-public record BookingRequest(
+public record BookingResponse(
         String firstName,
         String lastName,
         int totalPrice,
